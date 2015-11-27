@@ -37,7 +37,11 @@ gulp.task('scripts', ['useref'], function () {
         .pipe( gulp.dest( 'rev/js' ) );
 });
 
-gulp.task('build', ['css', 'icon', 'scripts'], function () {
+gulp.task('copy', function(){
+    return gulp.src('dist/**.**')
+        .pipe( gulp.dest('./'));
+});
+gulp.task('build', ['css', 'icon', 'scripts', 'copy'], function () {
     return gulp.src(['rev/**/*.json', 'dist/*.html'])
         .pipe( revCollector({
             replaceReved: true,
